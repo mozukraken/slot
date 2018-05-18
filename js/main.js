@@ -10,8 +10,10 @@
     'cherry.png'
   ];
 
+  var timers = [];
+
   function runSlot(n) {
-    setTimeout(function() {
+    timers[n] = setTimeout(function() {
       panels[n].children[0].src =
       'img/' +
       cards[Math.floor(Math.random() * cards.length)];
@@ -19,11 +21,21 @@
     }, 50);
   }
 
+  function initPanel() {
+    var i;
+    for (i = 0; i < panels.length; i++) {
+      panels[i].children[1].addEventListener('click', function() {
+        clearTimeout(timers[this.dataset.index]);
+      });
+    }
+  }
+
+  initPanel();
+
   spin.addEventListener('click', function() {
     var i;
     for (i = 0; i < panels.length; i++) {
       runSlot(i);
-      console.log("1");
     }
   });
 
