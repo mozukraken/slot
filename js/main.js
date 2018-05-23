@@ -12,6 +12,8 @@
 
   var timers = [];
 
+  var stopCount = 0;
+
   function runSlot(n) {
     timers[n] = setTimeout(function() {
       panels[n].children[0].src =
@@ -26,8 +28,19 @@
     for (i = 0; i < panels.length; i++) {
       panels[i].children[1].addEventListener('click', function() {
         clearTimeout(timers[this.dataset.index]);
+        stopCount++;
+        if (stopCount == panels.length) {
+          stopCount = 0;
+          checkResults();
+        }
       });
     }
+  }
+
+  function checkResults() {
+    var img0 = panels[0].children[0];
+    var img1 = panels[1].children[0];
+    var img2 = panels[2].children[0];
   }
 
   initPanel();
