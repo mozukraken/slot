@@ -41,6 +41,18 @@
     var img0 = panels[0].children[0];
     var img1 = panels[1].children[0];
     var img2 = panels[2].children[0];
+
+    if (img0.src !== img1.src && img0.src !== img2.src) {
+      img0.className = 'unmatched';
+    }
+
+    if (img1.src !== img0.src && img1.src !== img2.src) {
+      img1.className = 'unmatched';
+    }
+
+    if (img2.src !== img0.src && img2.src !== img1.src) {
+      img2.className = 'unmatched';
+    }
   }
 
   initPanel();
@@ -49,6 +61,7 @@
     var i;
     for (i = 0; i < panels.length; i++) {
       runSlot(i);
+      panel[i].children[0].className = '';
     }
   });
 
