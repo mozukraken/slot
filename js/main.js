@@ -29,9 +29,11 @@
       panels[i].children[1].addEventListener('click', function() {
         clearTimeout(timers[this.dataset.index]);
         stopCount++;
+        this.className = 'stop inactive';
         if (stopCount == panels.length) {
           stopCount = 0;
           checkResults();
+          spin.className = '';
         }
       });
     }
@@ -59,9 +61,11 @@
 
   spin.addEventListener('click', function() {
     var i;
+    this.className = 'inactive';
     for (i = 0; i < panels.length; i++) {
       runSlot(i);
       panel[i].children[0].className = '';
+      panel[i].children[1].className = 'stop';
     }
   });
 

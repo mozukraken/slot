@@ -58,3 +58,7 @@ body {
 .unmatched {
   opacity: 0.6;
 }
+
+.inactive {
+  opacity: .5;
+}
