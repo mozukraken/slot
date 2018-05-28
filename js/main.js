@@ -27,6 +27,9 @@
     var i;
     for (i = 0; i < panels.length; i++) {
       panels[i].children[1].addEventListener('click', function() {
+        if (this.className.indexOf('inactive') !== -1) {
+          return;
+        }
         clearTimeout(timers[this.dataset.index]);
         stopCount++;
         this.className = 'stop inactive';
@@ -61,6 +64,9 @@
 
   spin.addEventListener('click', function() {
     var i;
+    if (this.className.indexOf('inactive') !== -1) {
+      return;
+    }
     this.className = 'inactive';
     for (i = 0; i < panels.length; i++) {
       runSlot(i);
